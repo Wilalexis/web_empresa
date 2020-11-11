@@ -49,6 +49,15 @@ public class sr_cliente extends HttpServlet {
                         out.println("<a href ='clientes.jsp'>Regresar</a>");
                     }
                 }
+                //boton agregar2
+                if("agregarC".equals(request.getParameter("btn_agregarC"))){
+                    if(cliente.agregar() > 0){ 
+                        response.sendRedirect("datos_ventas.jsp");
+                    }else{
+                        out.println("<h1>No se Agrego...........</h1>");
+                        out.println("<a href ='datos_ventas.jsp'>Regresar</a>");
+                    }
+                }
                 //boton modificar
                 if("modificar".equals(request.getParameter("btn_modificar"))){
                     if(cliente.modificar() > 0){ 

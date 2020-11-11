@@ -17,7 +17,7 @@
     <body>
         
     <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-        <a class="navbar-brand" href="index.jsp"><img src="imagenes/socios.png"></a>
+        <a class="navbar-brand" href="menu.jsp"><img src="imagenes/socios.png"></a>
 
         <ul class="navbar-nav">
             <li class="nav-item dropdown">
@@ -64,7 +64,9 @@
             <br><h3 style="text-align: center;" class="text-warning">Lista de Clientes</h3><br>
         <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#myModal" style="text-align: center;">
             Ingrese un nuevo empleado
-        </button><br><br>
+        </button>
+        <a href="tabla_ventas.jsp" style="background: #064C4F; color: #fff;" class="btn">Tabla ventas</a>    
+        <br><br>
 
         <!-- Inicio de formulario: Modificar cliente -->
         <div class="modal fade" id="modal_ME">

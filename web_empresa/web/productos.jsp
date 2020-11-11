@@ -19,7 +19,7 @@
     <body>
         
     <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-        <a class="navbar-brand" href="index.jsp"><img src="imagenes/socios.png"></a>
+        <a class="navbar-brand" href="menu.jsp"><img src="imagenes/socios.png"></a>
 
         <ul class="navbar-nav">
             <li class="nav-item dropdown">
@@ -37,7 +37,8 @@
                     Ventas
                 </a>
                 <div class="dropdown-menu">
-                    <a class="dropdown-item" href="ventas.jsp">Tabla Ventas</a>
+                    <a class="dropdown-item" href="datos_ventas.jsp">Realizar Ventas</a>
+                    <a class="dropdown-item" href="tabla_ventas.jsp">Registro de ventas</a>
                     <a class="dropdown-item" href="clientes.jsp">Tabla Clientes</a>     
 
                     <a class="nav-link dropdown-toggle text-body" href="#" id="navbardrop" data-toggle="dropdown">
@@ -55,7 +56,8 @@
                     Compras
                 </a>
                 <div class="dropdown-menu">
-                    <a class="dropdown-item" href="compras.jsp">Tabla Compras</a>
+                    <a class="dropdown-item" href="datos_compra.jsp">Realizar Compras</a>
+                    <a class="dropdown-item" href="tabla_compras.jsp">Registro de compras</a>
                     <a class="dropdown-item" href="proveedores.jsp">Tabla Proveedores</a>
                 </div>    
             </li>
@@ -66,7 +68,10 @@
         <br><h3 style="text-align: center;" class="text-danger">Lista de Producto</h3><br>
         <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModal" style="text-align: center;">
             Ingrese nuevo producto
-        </button><br><br>
+        </button>
+        <a href="marcas.jsp" class="btn btn-primary">Tabla marcas</a>
+        
+        <br><br>
 
         <!-- Inicio de formulario: Modificar Producto -->
         <div class="modal fade" id="modal_ME">
@@ -80,13 +85,13 @@
                             </div>
                     
                             <div class="modal-body">                                
-                                <%--<label><b>ID del Producto</b></label>--%>
+                                <%--<label><b>ID del Producto</b></label>--%>                                
                                 <input type="hidden" name="txt_id_producto" id="txt_id_producto" class="form-control" value="0" readonly>
                                 <label><b>Nombre del Producto: </b></label>
                                 <input type="text" name="txt_producto" id="txt_producto" class="form-control" placeholder="Ejemplo: Zapatos" required>
                                 
                                 <label><b>Marca del Producto: </b></label>
-                                <select name="drop_marca" id="drop_marca" class="form-control">
+                                <select name="drop_id_marca" id="drop_id_marca" class="form-control">
                                 <%
                                     Marca marcaM = new Marca();
                                     HashMap<String,String> dropM = marcaM.drop_marca();
@@ -146,7 +151,7 @@
                                 <%
                                     Marca marca = new Marca();
                                     HashMap<String,String> drop = marca.drop_marca();
-                                    out.println("<option>--Elija un puesto--</option>");
+                                    out.println("<option>--Elija una marca--</option>");
                                     for(String i: drop.keySet()){
                                         out.println("<option value='" + i + "' >" + drop.get(i) +"</option>");
                                     }
@@ -238,9 +243,9 @@
                 
                 $("#txt_id_producto").val(id);
                 $("#txt_producto").val(producto);
-                $("#drop_marca").val(id_m);                
-                $("#txt_descripcion").val(descripcion);                
+                $("#drop_id_marca").val(id_m);                
                 
+                $("#txt_descripcion").val(descripcion);
                 $("#txt_precio_costo").val(precio_costo);
                 $("#txt_precio_venta").val(precio_venta);
                 $("#txt_existencia").val(existencia);

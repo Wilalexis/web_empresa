@@ -28,6 +28,22 @@
         <servlet-name>sr_marca</servlet-name>
         <servlet-class>controlador.sr_marca</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>sr_ventas</servlet-name>
+        <servlet-class>controlador.sr_ventas</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>sr_venta_detalle</servlet-name>
+        <servlet-class>controlador.sr_venta_detalle</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>sr_compras</servlet-name>
+        <servlet-class>controlador.sr_compras</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>sr_compra_detalle</servlet-name>
+        <servlet-class>controlador.sr_compra_detalle</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>sr_empleado</servlet-name>
         <url-pattern>/sr_empleado</url-pattern>
@@ -55,6 +71,22 @@
     <servlet-mapping>
         <servlet-name>sr_marca</servlet-name>
         <url-pattern>/sr_marca</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>sr_ventas</servlet-name>
+        <url-pattern>/sr_ventas</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>sr_venta_detalle</servlet-name>
+        <url-pattern>/sr_venta_detalle</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>sr_compras</servlet-name>
+        <url-pattern>/sr_compras</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>sr_compra_detalle</servlet-name>
+        <url-pattern>/sr_compra_detalle</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

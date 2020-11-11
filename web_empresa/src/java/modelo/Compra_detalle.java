@@ -12,33 +12,33 @@ import java.sql.SQLException;
  *
  * @author Wilmer
  */
-public class Venta_detalle{
-    private int id_venta_detalle, id_venta, id_producto, cantidad;
-    private Float precio_unitario;
+public class Compra_detalle {
+    private int id_compras_detalle, id_compra, id_producto, cantidad;
+    private Float costo_precio_unitario;
     private Conexion cn;
-    public Venta_detalle(){}
-    public Venta_detalle(int id_venta_detalle, int id_venta, int id_producto, int cantidad, Float precio_unitario) {
-        this.id_venta_detalle = id_venta_detalle;
-        this.id_venta = id_venta;
+    public Compra_detalle(){}
+    public Compra_detalle(int id_compras_detalle, int id_compra, int id_producto, int cantidad, Float costo_precio_unitario) {
+        this.id_compras_detalle = id_compras_detalle;
+        this.id_compra = id_compra;
         this.id_producto = id_producto;
         this.cantidad = cantidad;
-        this.precio_unitario = precio_unitario;
+        this.costo_precio_unitario = costo_precio_unitario;
     }
 
-    public int getId_venta_detalle() {
-        return id_venta_detalle;
+    public int getId_compras_detalle() {
+        return id_compras_detalle;
     }
 
-    public void setId_venta_detalle(int id_venta_detalle) {
-        this.id_venta_detalle = id_venta_detalle;
+    public void setId_compras_detalle(int id_compras_detalle) {
+        this.id_compras_detalle = id_compras_detalle;
     }
 
-    public int getId_venta() {
-        return id_venta;
+    public int getId_compra() {
+        return id_compra;
     }
 
-    public void setId_venta(int id_venta) {
-        this.id_venta = id_venta;
+    public void setId_compra(int id_compra) {
+        this.id_compra = id_compra;
     }
 
     public int getId_producto() {
@@ -57,26 +57,48 @@ public class Venta_detalle{
         this.cantidad = cantidad;
     }
 
-    public Float getPrecio_unitario() {
-        return precio_unitario;
+    public Float getCosto_precio_unitario() {
+        return costo_precio_unitario;
     }
 
-    public void setPrecio_unitario(Float precio_unitario) {
-        this.precio_unitario = precio_unitario;
+    public void setCosto_precio_unitario(Float costo_precio_unitario) {
+        this.costo_precio_unitario = costo_precio_unitario;
     }
     
-    public int datos_detalle(){
+    public int datos_compra_detalle(){
         int retorno=0;
         try{
             PreparedStatement parametro;
             cn = new Conexion();
-            String query= "INSERT INTO ventas_detalle(id_venta,id_producto,cantidad,precio_unitario) VALUES (?,?,?,?);";
+            String query = "INSERT INTO compras_detalle(id_compra,id_producto,cantidad,costo_precio_unitario) VALUES (?,?,?,?);";
             cn.abrir_conexion();
             parametro = (PreparedStatement)cn.conexionBD.prepareStatement(query);
-            parametro.setInt(1, getId_venta());
+            parametro.setInt(1, getId_compra());
             parametro.setInt(2, getId_producto());
             parametro.setInt(3, getCantidad());
-            parametro.setFloat(4, getPrecio_unitario());                       
+            parametro.setFloat(4, getCosto_precio_unitario());                       
+            retorno=parametro.executeUpdate();
+            cn.cerrar_conexion();
+        }catch(Exception ex){
+            System.out.println(ex.getMessage());
+            retorno=0;
+        }
+        return retorno;
+    }
+    
+    public int modificar_compra_detalle(){
+        int retorno = 0;
+        try{
+            PreparedStatement parametro;
+            cn = new Conexion();
+            String query = "UPDATE compras_detalle SET id_compra = ?, id_producto = ?, cantidad = ?, costo_precio_unitario = ? WHERE id_compras_detalle = ?;";
+            cn.abrir_conexion();
+            parametro = (PreparedStatement)cn.conexionBD.prepareStatement(query);
+            parametro.setInt(1, getId_compra());
+            parametro.setInt(2, getId_producto());
+            parametro.setInt(3, getCantidad());
+            parametro.setFloat(4, getCosto_precio_unitario());
+            parametro.setInt(5, getId_compras_detalle());
             retorno=parametro.executeUpdate();
             cn.cerrar_conexion();
         }catch(SQLException ex){
@@ -86,37 +108,15 @@ public class Venta_detalle{
         return retorno;
     }
     
-    public int modificar_venta_detalle(){
+    public int eliminar_compras_detalle(){
         int retorno = 0;
         try{
             PreparedStatement parametro;
             cn = new Conexion();
-            String query = "UPDATE ventas_detalle SET id_venta = ?, id_producto = ?,cantidad = ?, precio_unitario = ? WHERE id_venta_detalle = ?;";
+            String query = "DELETE FROM compras_detalle WHERE id_compras_detalle = ?;";
             cn.abrir_conexion();
-            parametro = (PreparedStatement)cn.conexionBD.prepareStatement(query);
-            parametro.setInt(1, getId_venta());
-            parametro.setInt(2, getId_producto());
-            parametro.setInt(3, getCantidad());
-            parametro.setFloat(4, getPrecio_unitario());
-            parametro.setInt(5, getId_venta_detalle());
-            retorno=parametro.executeUpdate();
-            cn.cerrar_conexion();
-        }catch(SQLException ex){
-            System.out.println(ex.getMessage());
-            retorno=0;
-        }
-        return retorno;
-    }
-    
-    public int eliminar_venta_detalle(){
-        int retorno = 0;
-        try{
-            PreparedStatement parametro;
-            cn = new Conexion();
-            String query = "DELETE FROM ventas_detalle WHERE id_venta_detalle = ?;";
-            cn.abrir_conexion();
-            parametro = (PreparedStatement)cn.conexionBD.prepareStatement(query);           
-            parametro.setInt(1, getId_venta_detalle());
+            parametro = (PreparedStatement)cn.conexionBD.prepareStatement(query);            
+            parametro.setInt(1, getId_compras_detalle());
             retorno=parametro.executeUpdate();
             cn.cerrar_conexion();
         }catch(SQLException ex){

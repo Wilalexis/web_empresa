@@ -8,17 +8,16 @@ package controlador;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import modelo.Ventas;
-
+import modelo.Venta;
+import modelo.Venta_detalle;
+import modelo.tabla_venta_detalle;
 /**
  *
- * @author USUARIO
+ * @author Wilmer
  */
-@WebServlet(name = "sr_ventas", urlPatterns = {"/sr_ventas"})
 public class sr_ventas extends HttpServlet {
 
     /**
@@ -30,48 +29,97 @@ public class sr_ventas extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    Ventas ventas;
+    Venta venta;
+    Venta_detalle venta_detalle;
+    //int IdVenta;
+    tabla_venta_detalle ventaD;
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet sr_puesto</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            ventas = new Ventas(Integer.valueOf(request.getParameter("txt_id_venta")),Integer.valueOf(request.getParameter("txt_no_factura")),Integer.valueOf(request.getParameter("drop_cliente")),Integer.valueOf(request.getParameter("drop_empleado")),request.getParameter("txt_serie"),request.getParameter("txt_fecha_factura"),request.getParameter("txt_nit"),request.getParameter("txt_correo"),Integer.valueOf(request.getParameter("txt_id")),request.getParameter("txt_nombres"),request.getParameter("txt_apellidos"),request.getParameter("txt_telefono"),request.getParameter("drop_genero"),request.getParameter("txt_fecha_ingreso"));
-            //boton agregar
-                if("agregar".equals(request.getParameter("btn_agregar"))){
-                    if(ventas.agregar() > 0){ 
+        String accion=request.getParameter("accion");
+        
+        switch(accion){
+            case "DatosComprador":
+                venta = new Venta(Integer.valueOf(request.getParameter("txt_id")),Integer.valueOf(request.getParameter("txt_no_factura")),Integer.valueOf(request.getParameter("drop_cliente")),Integer.valueOf(request.getParameter("drop_empleado")),request.getParameter("txt_serie"),request.getParameter("txt_fecha"),request.getParameter("txt_f_ingreso"));
+                //boton agregar
+                if("datos_comprador".equals(request.getParameter("btn_datos_comprador"))){
+                    if(venta.datos_comprador() > 0){ 
                         response.sendRedirect("ventas.jsp");
                     }else{
-                        out.println("<h1>No se Agrego...........</h1>");
-                        out.println("<a href ='ventas.jsp'>Regresar</a>");
+                        //out.println("<h1>No se Agrego...........</h1>");
+                        //out.println("<a href ='ventas.jsp'>Regresar</a>");
                     }
                 }
+                   
+                break;
+            case "DatosCompradorMantenimiento":
+                venta = new Venta(Integer.valueOf(request.getParameter("txt_id")),Integer.valueOf(request.getParameter("txt_no_factura")),Integer.valueOf(request.getParameter("drop_cliente")),Integer.valueOf(request.getParameter("drop_empleado")),request.getParameter("txt_serie"),request.getParameter("txt_fecha"),request.getParameter("txt_ingreso"));
                 //boton modificar
                 if("modificar".equals(request.getParameter("btn_modificar"))){
-                    if(ventas.modificar() > 0){ 
-                        response.sendRedirect("ventas.jsp");
+                    if(venta.modificar_venta() > 0){ 
+                        response.sendRedirect("tabla_ventas.jsp");
                     }else{
-                        out.println("<h1>No se modifico...........</h1>");
-                        out.println("<a href ='ventas.jsp'>Regresar</a>");
+                        //out.println("<h1>No se modifico...........</h1>");
+                        //out.println("<a href ='clientes.jsp'>Regresar</a>");
                     }
                 }
                 //boton eliminar
                 if("eliminar".equals(request.getParameter("btn_eliminar"))){
-                    if(ventas.eliminar() > 0){ 
-                    response.sendRedirect("ventas.jsp");
+                    if(venta.eliminar_venta() > 0){ 
+                    response.sendRedirect("tabla_ventas.jsp");
                     }else{
-                        out.println("<h1>No se eliminar...........</h1>");
-                        out.println("<a href ='ventas.jsp'>Regresar</a>");
+                        //out.println("<h1>No se eliminar...........</h1>");
+                        //out.println("<a href ='clientes.jsp'>Regresar</a>");
+                    }
+                }            
+                break;
+            case "DatosDetalle":                
+                venta_detalle = new Venta_detalle(Integer.valueOf(request.getParameter("txt_id_venta_detalle")),Integer.valueOf(request.getParameter("txt_id_venta")),Integer.valueOf(request.getParameter("td_id_producto")),Integer.valueOf(request.getParameter("txt_cantidad")),Float.parseFloat(request.getParameter("td_precio_unitario")));
+            //boton agregar
+                if("datos_detalle".equals(request.getParameter("btn_datos_detalle"))){
+                    if(venta_detalle.datos_detalle() > 0){ 
+                        response.sendRedirect("ventas.jsp");
+                    }else{
+                        //out.println("<h1>No se Agrego...........</h1>");
+                        //out.println("<a href ='ventas.jsp'>Regresar</a>");
+                    }                    
+                }                
+                break;
+            case "DatosDetalleMantenimiento":
+                venta_detalle = new Venta_detalle(Integer.valueOf(request.getParameter("txt_id_detalle")),Integer.valueOf(request.getParameter("txt_IdVenta")),Integer.valueOf(request.getParameter("drop_productoV")),Integer.valueOf(request.getParameter("txt_CantidadVenta")),Float.parseFloat(request.getParameter("txt_precio_unitario")));
+                //boton modificar
+                if("modificarVD".equals(request.getParameter("btn_modificarVD"))){
+                    if(venta_detalle.modificar_venta_detalle() > 0){
+                        //response.sendRedirect("sr_venta_detalle.java");
+                        response.sendRedirect("tabla_ventas.jsp");
+                    }else{
+                        //out.println("<h1>No se modifico...........</h1>");
+                        //out.println("<a href ='clientes.jsp'>Regresar</a>");
                     }
                 }
-            out.println("</body>");
-            out.println("</html>");
+                //boton eliminar
+                if("eliminarVD".equals(request.getParameter("btn_eliminarVD"))){
+                    if(venta_detalle.eliminar_venta_detalle() > 0){
+                        //response.sendRedirect("sr_venta_detalle.java");
+                        response.sendRedirect("tabla_ventas.jsp");
+                    }else{
+                        //out.println("<h1>No se eliminar...........</h1>");
+                        //out.println("<a href ='clientes.jsp'>Regresar</a>");
+                    }
+                }
+                
+                break;
+            case "VentaDetalle":
+                ventaD = new tabla_venta_detalle(Integer.valueOf(request.getParameter("txt_id")));
+            //boton agregar
+                if("venta_detalle".equals(request.getParameter("btn_venta_detalle"))){
+                    ventaD.leer_detalleV(Integer.valueOf(request.getParameter("txt_id"))); 
+                        response.sendRedirect("ventas_detalle.jsp");
+                    
+                        //out.println("<h1>No se Agrego...........</h1>");
+                        //out.println("<a href ='ventas.jsp'>Regresar</a>");                    
+                }    
+                break;
+            
         }
     }
 

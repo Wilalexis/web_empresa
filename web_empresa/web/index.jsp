@@ -1,78 +1,113 @@
 <%-- 
     Document   : index
-    Created on : 11/10/2020, 15:04:23
-    Author     : Wilmer
+    Created on : 12/10/2020, 10:18:46 AM
+    Author     : USUARIO
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
+        
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Principal</title>
+         <title>Login Empresa S.A</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-
-        <style type="text/css">
-            body{
-                background: #3a7bd5;  
-                background: -webkit-linear-gradient(to right, #3a6073, #3a7bd5);  
-                background: linear-gradient(to right, #3a6073, #3a7bd5); 
-            }
-        </style>
+        <!--===============================================================================================-->	
+	<link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="fonts/Linearicons-Free-v1.0.0/icon-font.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/animate/animate.css">
+<!--===============================================================================================-->	
+	<link rel="stylesheet" type="text/css" href="vendor/css-hamburgers/hamburgers.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/animsition/css/animsition.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/select2/select2.min.css">
+<!--===============================================================================================-->	
+	<link rel="stylesheet" type="text/css" href="vendor/daterangepicker/daterangepicker.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="css/util.css">
+	<link rel="stylesheet" type="text/css" href="css/main.css">
+<!--===============================================================================================-->
     </head>
-    <body>
+    
+   <body>
+       <div class="limiter">
+		<div class="container-login100">
+			<div class="wrap-login100">
+				<div class="login100-form-title" style="background-image: url(images/bg-01.jpg);">
+					<span class="login100-form-title-1">
+						Login
+					</span>
+				</div>
 
-        <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-        <a class="navbar-brand" href="index.jsp"><img src="imagenes/socios.png"></a>
+				<form class="login100-form validate-form">
+					<div class="wrap-input100 validate-input m-b-26" data-validate="Username is required">
+						<span class="label-input100">Correo Electronico</span>
+						<input class="input100" type="text" name="correo" placeholder="Correo Electronico">
+						<span class="focus-input100"></span>
+					</div>
 
-        <ul class="navbar-nav">
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
-                    Productos
-                </a>
-                <div class="dropdown-menu">
-                    <a class="dropdown-item" href="productos.jsp">Tabla Productos</a>
-                    <a class="dropdown-item" href="marcas.jsp">Tabla Marcas</a>
-                </div>    
-            </li>
+					<div class="wrap-input100 validate-input m-b-18" data-validate = "Password is required">
+						<span class="label-input100">Contraseña</span>
+						<input class="input100" type="password" name="pass" placeholder="Clave">
+						<span class="focus-input100"></span>
+					</div>
 
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
-                    Ventas
-                </a>
-                <div class="dropdown-menu">
-                    <a class="dropdown-item" href="ventas.jsp">Tabla Ventas</a>
-                    <a class="dropdown-item" href="clientes.jsp">Tabla Clientes</a>     
+					<div class="flex-sb-m w-full p-b-30">
+						<div class="contact100-form-checkbox">
+							<input class="input-checkbox100" id="ckb1" type="checkbox" name="remember-me">
+							<label class="label-checkbox100" for="ckb1">
+								Recuerdame
+							</label>
+						</div>
 
-                    <a class="nav-link dropdown-toggle text-body" href="#" id="navbardrop" data-toggle="dropdown">
-                        Empleados
-                    </a>
-                    <div class="dropdown-menu">
-                        <a class="dropdown-item" href="empleados.jsp">Tabla Empleados</a>
-                        <a class="dropdown-item" href="puestos.jsp">Tabla Puestos</a>       
-                    </div>        
-                </div>    
-            </li>
-
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
-                    Compras
-                </a>
-                <div class="dropdown-menu">
-                    <a class="dropdown-item" href="compras.jsp">Tabla Compras</a>
-                    <a class="dropdown-item" href="proveedores.jsp">Tabla Proveedores</a>
-                </div>    
-            </li>
-        </ul>        
-    </nav>
-
-
-
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>    
- 
-
+						<div>
+							<a href="recuperacion.jsp" class="txt1">
+								¿Olvide mi Contraseña?
+							</a>
+						</div>
+                                                
+                                                <div>
+							<a href="regristros.jsp" class="txt1">
+								REGISTRARSE
+							</a>
+						</div>
+					</div>
+                                          
+					<div class="container-login100-form-btn">
+						<button class="login100-form-btn">
+                                                    <a href="menu.jsp" class="txt1">
+							Iniciar sesión
+                                                        </a>
+						</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+  
+       <!--===============================================================================================-->
+	<script src="vendor/jquery/jquery-3.2.1.min.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/animsition/js/animsition.min.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/bootstrap/js/popper.js"></script>
+	<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/select2/select2.min.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/daterangepicker/moment.min.js"></script>
+	<script src="vendor/daterangepicker/daterangepicker.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/countdowntime/countdowntime.js"></script>
+<!--===============================================================================================-->
+	<script src="js/main.js"></script>
+           
     </body>
 </html>

@@ -7,6 +7,7 @@ package modelo;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.PreparedStatement;
+import java.util.HashMap;
 import javax.swing.table.DefaultTableModel;
 /**
  *
@@ -156,15 +157,13 @@ public class Producto {
         }
         return retorno;
     }
-    
-   
-    
+           
     public int modificar(){
         int retorno = 0;
         try{
             PreparedStatement parametro;
             cn = new Conexion();
-            String query = "UPDATE productos SET producto = ?, id_marca = ?, descripcion = ?, imagen = ?, precio_costo = ?, precio_venta = ?, existencia = ?, fecha_ingreso = ? WHERE id_producto = ?;";
+            String query = "UPDATE productos SET producto = ?, id_marca = ?, descripcion = ?, imagen = ?, precio_costo = ?, precio_venta = ?, existencia = ?, fecha_ingreso = ? WHERE id_producto = ?;";           
             cn.abrir_conexion();
             parametro = (PreparedStatement)cn.conexionBD.prepareStatement(query);
             parametro.setString(1, getProducto());
@@ -183,7 +182,7 @@ public class Producto {
             retorno=0;
         }
         return retorno;
-    }
+    }        
     
     public int eliminar(){
         int retorno = 0;
@@ -203,4 +202,20 @@ public class Producto {
         return retorno;
     }
     
+    public HashMap drop_producto(){
+        HashMap<String,String> drop = new HashMap();
+        try{
+            cn = new Conexion();
+            String query = "SELECT id_producto, producto FROM productos;";
+            cn.abrir_conexion();
+            ResultSet consulta = cn.conexionBD.createStatement().executeQuery(query);
+            while (consulta.next()){
+                drop.put(consulta.getString("id_producto"), consulta.getString("producto"));
+            }
+            cn.cerrar_conexion();
+        }catch(SQLException ex){
+            System.out.println(ex.getMessage());
+        }
+        return drop;
+    }
 }

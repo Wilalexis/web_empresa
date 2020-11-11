@@ -18,7 +18,7 @@
     <body>
         
     <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-        <a class="navbar-brand" href="index.jsp"><img src="imagenes/socios.png"></a>
+        <a class="navbar-brand" href="menu.jsp"><img src="imagenes/socios.png"></a>
 
         <ul class="navbar-nav">
             <li class="nav-item dropdown">
@@ -65,7 +65,9 @@
         <br><h3 style="text-align: center;" class="text-success">Lista de Puestos</h3><br>
         <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal" style="text-align: center;">
             Ingrese nuevo puesto
-        </button><br><br>
+        </button>
+        <a href="empleados.jsp" class="btn btn-primary">Tabla empleados</a>
+        <br><br>
 
         <!-- Inicio de formulario: Modificar puesto -->
         <div class="modal fade" id="modal_ME">
@@ -79,7 +81,7 @@
                             </div>
                     
                             <div class="modal-body">
-                                
+                                <%--<label><b>Id puesto: </b></label>--%>
                                 <input type="hidden" name="txt_id_puesto" id="txt_id_puesto" class="form-control" value="0" readonly>
                                 <label><b>Nombre del Puesto: </b></label>
                                 <input type="text" name="txt_nombre_puesto" id="txt_nombre_puesto" class="form-control" required>                                                                
@@ -110,7 +112,7 @@
                             </div>
                     
                             <div class="modal-body">                                
-                                
+                                <%--<label><b>Id puesto: </b></label>--%>
                                 <input type="hidden" name="txt_id_puesto" id="txt_id_puesto" class="form-control" value="0" readonly>
                                 <label><b>Nombre del Puesto: </b></label>
                                 <input type="text" name="txt_nombre_puesto" id="txt_nombre_puesto" class="form-control" placeholder="Ejemplo: Programador" required>                                
@@ -159,7 +161,7 @@
                var target,id_puesto,nombre_puesto;
                
                target = $(event.target);
-               id_puesto = target.parent().data('id_puesto');                              
+               id_puesto = target.parent().data('id');                              
                nombre_puesto = target.parents("tr").find("td").eq(0).html();
               
                $("#txt_id_puesto").val(id_puesto);

@@ -85,9 +85,9 @@
               
                     <div id="header">
                         	<ul class="nav">
-                                	<li><a href="compras_detalle.jsp">Detalle de Compras</a>
+                                	<li><a href="tabla_ventas.jsp">Tabla ventas</a>
                                         	<ul>
-                                                  <li><a href="ventas_detalle.jsp">Detalle de Ventas </a>
+                                                  <li><a href="tabla_compras.jsp">tabla compras </a>
                                						</li>
 					</ul>
 				</li>

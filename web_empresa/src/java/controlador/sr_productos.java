@@ -38,9 +38,8 @@ public class sr_productos extends HttpServlet {
             out.println("<head>");
             out.println("<title>Servlet sr_productos</title>");            
             out.println("</head>");
-            out.println("<body>");
-            
-            producto = new Producto(Integer.valueOf(request.getParameter("txt_id_producto")), Integer.valueOf(request.getParameter("drop_id_marca")), Integer.valueOf(request.getParameter("txt_existencia")), request.getParameter("txt_producto"), request.getParameter("txt_descripcion"), request.getParameter("txt_imagen"), request.getParameter("txt_fecha_ingreso"), Float.valueOf(request.getParameter("txt_precio_costo")), Float.valueOf(request.getParameter("txt_precio_venta")));
+            out.println("<body>");            
+            producto = new Producto(Integer.valueOf(request.getParameter("txt_id_producto")), Integer.valueOf(request.getParameter("drop_id_marca")), Integer.valueOf(request.getParameter("txt_existencia")), request.getParameter("txt_producto"), request.getParameter("txt_descripcion"), request.getParameter("txt_imagen"), request.getParameter("txt_fecha_ingreso"), Float.valueOf(request.getParameter("txt_precio_costo")), Float.valueOf(request.getParameter("txt_precio_venta")));            
             //boton agregar
                 if("agregar".equals(request.getParameter("btn_agregar"))){
                     if(producto.agregar() > 0){ 
@@ -51,7 +50,8 @@ public class sr_productos extends HttpServlet {
                     }
                 }
                 //boton modificar
-                if("modificar".equals(request.getParameter("btn_modificar"))){                    
+                
+                if("modificar".equals(request.getParameter("btn_modificar"))){                                        
                     if(producto.modificar() > 0){ 
                         
                         response.sendRedirect("productos.jsp");
@@ -61,8 +61,7 @@ public class sr_productos extends HttpServlet {
                     }
                 }
                 //boton eliminar
-                if("eliminar".equals(request.getParameter("btn_eliminar"))){
-                    out.println("<h1>HOLA</h1>");
+                if("eliminar".equals(request.getParameter("btn_eliminar"))){                    
                     if(producto.eliminar() > 0){ 
                         
                     response.sendRedirect("productos.jsp");

@@ -49,6 +49,15 @@ public class sr_proveedor extends HttpServlet {
                         out.println("<a href ='proveedores.jsp'>Regresar</a>");
                     }
                 }
+                //boton agregar2
+                if("agregarP".equals(request.getParameter("btn_agregarP"))){
+                    if(proveedor.agregar() > 0){ 
+                        response.sendRedirect("datos_compra.jsp");
+                    }else{
+                        out.println("<h1>No se Agrego...........</h1>");
+                        out.println("<a href ='proveedores.jsp'>Regresar</a>");
+                    }
+                }
                 //boton modificar
                 if("modificar".equals(request.getParameter("btn_modificar"))){
                     if(proveedor.modificar() > 0){ 

@@ -7,6 +7,7 @@ package modelo;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.PreparedStatement;
+import java.util.HashMap;
 import javax.swing.table.DefaultTableModel;
 /**
  *
@@ -179,5 +180,22 @@ public class Empleado extends Persona{
             retorno=0;
         }
         return retorno;
+    }
+    
+    public HashMap drop_empleado(){
+        HashMap<String,String> drop = new HashMap();
+        try{
+            cn = new Conexion();
+            String query = "SELECT id_empleado as id, concat_ws( ' ', nombres, apellidos) as personaE FROM empleados;";
+            cn.abrir_conexion();
+            ResultSet consulta = cn.conexionBD.createStatement().executeQuery(query);
+            while (consulta.next()){
+                drop.put(consulta.getString("id"), consulta.getString("personaE"));
+            }
+            cn.cerrar_conexion();
+        }catch(SQLException ex){
+            System.out.println(ex.getMessage());
+        }
+        return drop;
     }
 }

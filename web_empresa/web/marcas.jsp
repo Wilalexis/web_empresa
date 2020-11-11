@@ -19,7 +19,7 @@
      
       <body>
         <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-        <a class="navbar-brand" href="index.jsp"><img src="imagenes/socios.png"></a>
+        <a class="navbar-brand" href="menu.jsp"><img src="imagenes/socios.png"></a>
 
         <ul class="navbar-nav">
             <li class="nav-item dropdown">
@@ -63,10 +63,12 @@
     </nav>
           
         <div class="container">                        
-        <br><h3 style="text-align: center;">Lista de Marcas</h3><br>
+            <br><h3 style="text-align: center;" class="text-primary">Lista de Marcas</h3><br>
         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal" style="text-align: center;">
             Ingrese una Nueva Marca
-        </button><br><br>
+        </button>
+        <a href="productos.jsp" class="btn btn-danger">Tabla productos</a>
+        <br><br>
         
          <!-- Inicio de formulario: Modificar marcas -->
         <div class="modal fade" id="modal_ME">
